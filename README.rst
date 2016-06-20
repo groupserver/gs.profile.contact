@@ -19,12 +19,24 @@ Request contact with another member of a GroupSever group
 Introduction
 ============
 
+GroupServer is built around the principal of *lurk in peace:*
+just reading messages (lurking) is a valid form of participation,
+and group members should be left alone if they lurk. However,
+there are times when it would be nice to contact a lurking group
+member. This product supports this edge-case.
 
+The page ``request_contact.html`` (in the context of a profile)
+allows someone that is logged in to send a short message to
+someone. Along with the message all the **contact details** for
+the person **making** the request is sent. The person being
+contacted then has a choice to respond, or to ignore the
+request. The contact details of the recipient are always kept
+confidential.
 
 Resources
 =========
 
-- Code repository: https://github.com/groupserver/gs.profile.view
+- Code repository: https://github.com/groupserver/gs.profile.contact
 - Questions and comments to http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 
