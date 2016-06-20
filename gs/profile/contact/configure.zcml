@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           i18n_domain="gs.profile.contact">
+
+  <!--The request contact page-->
+  <browser:page
+    for="Products.CustomUserFolder.interfaces.ICustomUser"
+    name="request_contact.html"
+    class=".request.RequestContact"
+    template="browser/templates/request.pt"
+    permission="zope2.View" />
+
+  <!--The notification (HTML and plain-text) -->
+  <browser:page
+    name="gs-profile-contact.html"
+    for="Products.CustomUserFolder.interfaces.ICustomUser"
+    class=".notifications.RequestContact"
+    template="browser/templates/notification-html.pt"
+    permission="zope2.View" />
+  <browser:page
+    name="gs-profile-contact.txt"
+    for="Products.CustomUserFolder.interfaces.ICustomUser"
+    class=".notifications.RequestContact"
+    template="browser/templates/notification-txt.pt"
+    permission="zope2.View" />
+</configure>

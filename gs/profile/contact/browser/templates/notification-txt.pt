@@ -1,0 +1,2 @@
+<tal:block define="userInfo options/userInfo | view/userInfo;
+              emailAddress options/emailAddress | string:placeholder@email.address;"></tal:block>

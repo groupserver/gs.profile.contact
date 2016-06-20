@@ -28,12 +28,11 @@ class RequestContact(ProfileForm):
     label = 'Request contact'
     pageTemplateFileName = 'browser/templates/request.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
-    form_fields = form.Fields(IGSRequestContact, render_context=False)
+    form_fields = form.Fields(IRequestContact, render_context=False)
     request24hrlimit = 5
 
     def __init__(self, context, request):
         super(RequestContact, self).__init__(context, request)
-        self.userInfo = IGSUserInfo(context)
 
     @Lazy
     def queries(self):

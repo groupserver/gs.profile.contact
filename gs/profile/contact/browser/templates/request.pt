@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="context/@@groupserver_layout/page">
+  <head>
+    <title metal:fill-slot="title">
+      <span tal:replace="python:'%s: %s: %s'% (view.label, view.userInfo.name, view.siteInfo.name)">
+        Request Contact
+      </span>
+    </title>
+  </head>
+  <body>
+    <tal:block content="structure provider:groupserver.FormStatusMessage"
+      define="errors view/errors; status view/status; widgets view/widgets"
+      metal:fill-slot="messages">&#160;</tal:block>
+    <tal:block metal:fill-slot="contextnavigation">
+      <span
+        tal:replace="structure provider:groupserver.ProfileContextMenu">
+        Context Menu
+      </span>
+    </tal:block>
+    <tal:block metal:fill-slot="body">
+      <tal:block tal:define="requestcount view/count_contactRequests;
+                             request24hrlimit view/get_requestLimit">
+      <tal:block tal:condition="python:requestcount > request24hrlimit">
+       <h1 tal:content="view/label">Request Contact</h1>
+       <p>Unfortunately you have exceeded your request quota for today. You may only send <span tal:replace="request24hrlimit"/> requests per day.</p>
+      </tal:block>
+      <form enctype="multipart/form-data"  method="post" action="."
+        tal:attributes="action request/URL" id="request-contact"
+        tal:condition="python:not view.loggedInUser.anonymous and (requestcount <= request24hrlimit)">
+        <h1 tal:content="view/label">Request Contact</h1>
+        <p>
+          When you request contact, an email will be sent to
+          <span class="name"
+            tal:content="python:view.userInfo.name">a user</span>. In that email,
+          <em>your</em> private information will be
+          exposed:
+        </p>
+        <ul>
+          <li><em>Your</em> name
+            (<span class="name" tal:content="view/loggedInUser/name"/>)
+          </li>
+          <li><em>Your</em> email address
+            (<span class="emails"
+              tal:content="python:view.loggedInEmailUser.get_delivery_addresses()[0]"/>),
+            and
+          </li>
+          <li>Information in
+            <a href="#"
+              tal:attributes="href view/loggedInUser/url"><em>your</em>
+              profile.</a></li>
+        </ul>
+        <tal:block define="widgets view/widgets">
+          <tal:block replace="structure provider:groupserver.FormWidgets"/>
+        </tal:block>
+        <div class="buttons" tal:condition="view/availableActions">
+          <tal:block repeat="action view/actions">
+            <div class="formelementbutton">
+              <span tal:replace="structure action/render">Button</span>
+            </div>
+          </tal:block>
+        </div><!--buttons-->
+      </form>
+      </tal:block>
+    </tal:block>
+  </body>
+</html>
+
