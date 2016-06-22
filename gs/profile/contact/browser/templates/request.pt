@@ -10,6 +10,23 @@
     </title>
   </head>
   <body>
+    <ul metal:fill-slot="breadcrumb">
+      <li>
+        <a href="/" class="icon-alone">
+          <span aria-hidden="true" data-icon="&#x2302;"></span>
+          <span class="screen-reader-text">Site home page</span>
+        </a>
+      </li>
+      <li>
+        <a href="#"
+           tal:attributes="href view/userInfo/url"
+           title="Profile"><b class="fn"
+                              tal:content="view/userInfo/name">Name</b></a>
+      </li>
+      <li>
+        Request contact
+      </li>
+    </ul>
     <tal:block
       metal:fill-slot="messages"
       define="errors view/errors; status view/status; widgets view/widgets"
@@ -18,14 +35,15 @@
     </tal:block>
     <tal:block
       metal:fill-slot="body"
-      define="requestcount view/count_contactRequests;
+      define="requestcount view/requestCount;
               request24hrlimit view/request24hrlimit">
       <h1 tal:content="view/label">Request Contact</h1>
       <div id="gs-profile-contact-request-limit"
-        tal:condition="python:requestcount &gt; request24hrlimit">
+        tal:condition="python:not view.loggedInUser.anonymous and (requestcount &gt; request24hrlimit)">
         <p>
           Unfortunately you have exceeded your request quota for
-          today. You may only send
+          today.
+          You may only send
           <span tal:replace="request24hrlimit"/> requests per day
           (in a 24 hour period).
         </p>

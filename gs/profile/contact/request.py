@@ -20,8 +20,9 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from gs.core import to_unicode_or_bust
 from gs.profile.base import ProfileForm
 from gs.profile.email.base.emailuser import EmailUser
+from .audit import Auditer
 from .interfaces import IRequestContact
-from .audit import REQUEST_CONTACT, Auditer
+from .queries import RequestContactQuery
 
 
 class RequestContact(ProfileForm):
@@ -40,17 +41,30 @@ class RequestContact(ProfileForm):
         return retval
 
     @Lazy
+    def requestCount(self):
+        if self.loggedInUser.anonymous:
+            # FIXME: Figure out why raising Unauthorized does not work.
+            # m = 'You must be logged in to request contact with someone.'
+            # raise Unauthorized(m)
+            u = '/login.html?came_from={0}/request_contact.html'
+            uri = u.format(self.userInfo.url)
+            retval = self.request.RESPONSE.redirect(uri)
+        else:
+            retval = self.queries.count_contactRequests(self.loggedInUser.id)
+        return retval
+
+    @Lazy
     def loggedInEmailUser(self):
         retval = EmailUser(self.context, self.loggedInUser)
         return retval
 
     @form.action(label='Request', name='request', failure='handle_set_action_failure')
     def handle_set(self, action, data):
-        if self.queries.count_contactRequests() > self.request24hrlimit:
+        if self.requestCount > self.request24hrlimit:
             self.status = ('The request for contact has not been sent because you '
                            'have exceeded your daily limit of contact requests.')
         else:
-            self.auditer = ProfileAuditer(self.context)
+            self.auditer = Auditer(self.context)
             message = to_unicode_or_bust(data.get('message', ''))
             self.request_contact(message)
             s = 'The request for contact has been sent to {0}.'
@@ -67,4 +81,3 @@ class RequestContact(ProfileForm):
     def request_contact(self, userMessage):
         # TODO: This method.
         pass
-
