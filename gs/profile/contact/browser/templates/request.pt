@@ -1,55 +1,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  metal:use-macro="context/@@groupserver_layout/page">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/@@groupserver_layout/page">
   <head>
     <title metal:fill-slot="title">
-      <span tal:replace="python:'%s: %s: %s'% (view.label, view.userInfo.name, view.siteInfo.name)">
-        Request Contact
-      </span>
+      <tal:block replace="view/label" />:
+      <tal:block replace="view/userInfo/name" />:
+      <tal:block replace="view/siteInfo/name" />
     </title>
   </head>
   <body>
-    <tal:block content="structure provider:groupserver.FormStatusMessage"
+    <tal:block
+      metal:fill-slot="messages"
       define="errors view/errors; status view/status; widgets view/widgets"
-      metal:fill-slot="messages">&#160;</tal:block>
-    <tal:block metal:fill-slot="contextnavigation">
-      <span
-        tal:replace="structure provider:groupserver.ProfileContextMenu">
-        Context Menu
-      </span>
+      content="structure provider:groupserver.FormStatusMessage">
+      Feedback
     </tal:block>
-    <tal:block metal:fill-slot="body">
-      <tal:block tal:define="requestcount view/count_contactRequests;
-                             request24hrlimit view/get_requestLimit">
-      <tal:block tal:condition="python:requestcount > request24hrlimit">
-       <h1 tal:content="view/label">Request Contact</h1>
-       <p>Unfortunately you have exceeded your request quota for today. You may only send <span tal:replace="request24hrlimit"/> requests per day.</p>
-      </tal:block>
-      <form enctype="multipart/form-data"  method="post" action="."
-        tal:attributes="action request/URL" id="request-contact"
-        tal:condition="python:not view.loggedInUser.anonymous and (requestcount <= request24hrlimit)">
-        <h1 tal:content="view/label">Request Contact</h1>
+    <tal:block
+      metal:fill-slot="body"
+      define="requestcount view/count_contactRequests;
+              request24hrlimit view/request24hrlimit">
+      <h1 tal:content="view/label">Request Contact</h1>
+      <div id="gs-profile-contact-request-limit"
+        tal:condition="python:requestcount &gt; request24hrlimit">
+        <p>
+          Unfortunately you have exceeded your request quota for
+          today. You may only send
+          <span tal:replace="request24hrlimit"/> requests per day
+          (in a 24 hour period).
+        </p>
+      </div><!--gs-profile-contact-request-limit-->
+      <form
+        id="gs-profile-contact-request"
+        enctype="multipart/form-data"  method="post" action="."
+        tal:attributes="action request/URL"
+        tal:condition="python:not view.loggedInUser.anonymous and (requestcount &lt;= request24hrlimit)">
         <p>
           When you request contact, an email will be sent to
-          <span class="name"
-            tal:content="python:view.userInfo.name">a user</span>. In that email,
-          <em>your</em> private information will be
+          <span
+            class="fn" tal:content="view/userInfo/name">a user</span>.
+          In that email, <i>your</i> private information will be
           exposed:
         </p>
         <ul>
-          <li><em>Your</em> name
-            (<span class="name" tal:content="view/loggedInUser/name"/>)
+          <li>
+            <b>Your</b> name
+            (<span class="fn" tal:content="view/loggedInUser/name"/>)
           </li>
-          <li><em>Your</em> email address
+          <li>
+            <b>Your</b> email address
             (<span class="emails"
-              tal:content="python:view.loggedInEmailUser.get_delivery_addresses()[0]"/>),
+              tal:content="python:view.loggedInEmailUser.preferred[0]"/>),
             and
           </li>
-          <li>Information in
-            <a href="#"
-              tal:attributes="href view/loggedInUser/url"><em>your</em>
-              profile.</a></li>
+          <li>
+            Information in
+            <a href="#" tal:attributes="href view/loggedInUser/url"><b>your</b>
+            profile.</a>
+          </li>
         </ul>
         <tal:block define="widgets view/widgets">
           <tal:block replace="structure provider:groupserver.FormWidgets"/>
@@ -62,8 +70,6 @@
           </tal:block>
         </div><!--buttons-->
       </form>
-      </tal:block>
     </tal:block>
   </body>
 </html>
-

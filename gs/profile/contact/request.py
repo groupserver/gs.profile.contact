@@ -29,7 +29,7 @@ class RequestContact(ProfileForm):
     pageTemplateFileName = 'browser/templates/request.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
     form_fields = form.Fields(IRequestContact, render_context=False)
-    request24hrlimit = 5
+    request24hrlimit = 3  # --=mpj17=-- Considering more than three requests a day to be harassment
 
     def __init__(self, context, request):
         super(RequestContact, self).__init__(context, request)
