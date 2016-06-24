@@ -50,15 +50,18 @@
       </div><!--gs-profile-contact-request-limit-->
       <form
         id="gs-profile-contact-request"
+        class="gs-content-js-required"
         enctype="multipart/form-data"  method="post" action="."
         tal:attributes="action request/URL"
         tal:condition="python:not view.loggedInUser.anonymous and (requestcount &lt;= request24hrlimit)">
         <p>
-          When you request contact, an email will be sent to
+          To request contact with
           <span
-            class="fn" tal:content="view/userInfo/name">a user</span>.
-          In that email, <i>your</i> private information will be
-          exposed:
+            class="fn" tal:content="view/userInfo/name">a user</span>
+          write a short message and click
+          <samp class="button">Request</samp>.
+          Your message will be sent in an email along with
+          <b>your</b> private information:
         </p>
         <ul>
           <li>
@@ -72,11 +75,16 @@
             and
           </li>
           <li>
-            Information in
+            The information on
             <a href="#" tal:attributes="href view/loggedInUser/url"><b>your</b>
             profile.</a>
           </li>
         </ul>
+        <p>
+          <span
+            class="fn" tal:content="view/userInfo/name">a user</span>
+          can chose to respond to your request, or not.
+        </p>
         <tal:block define="widgets view/widgets">
           <tal:block replace="structure provider:groupserver.FormWidgets"/>
         </tal:block>

@@ -21,7 +21,7 @@ class IRequestContact(Interface):
     message = TextLine(
         title='Message',
         description='A message that will appear in the email to the person.'
-                    ' It should be brief, as only 140 characters are allowed.',
-        max_length=140,
-        required=False)
+                    ' It should be brief, as only 160 characters are allowed.',
+        max_length=160,
+        required=True)
 
