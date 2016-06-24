@@ -13,16 +13,21 @@
 #
 ##############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
+from datetime import datetime
+from logging import getLogger
+from pytz import UTC
 from zope.component.interfaces import IFactory
-from zope.interface import implementer
-from Products.GSAuditTrail import IAuditEvent, BasicAuditEvent
+from zope.interface import implementer, implementedBy
+from Products.GSAuditTrail import (IAuditEvent, BasicAuditEvent, AuditQuery, event_id_from_data)
 
 SUBSYSTEM = 'groupserver.ProfileAudit'
+UNKNOWN = 0
 REQUEST_CONTACT = '5'
+log = getLogger(SUBSYSTEM)
 
 
 @implementer(IFactory)
-class ProfileAuditEventFactory(object):
+class AuditEventFactory(object):
     title = 'Request contact audit-event factory'
     description = 'Creates a GroupServer audit event for profiles'
 
@@ -48,7 +53,7 @@ class RequestContactEvent(BasicAuditEvent):
     def __init__(self, context, id, d, userInfo, instanceUserInfo,
                  siteInfo, instanceDatum, supplementaryDatum):
         super(RequestContactEvent, self).__init__(
-            self, context, id, REQUEST_CONTACT, d, userInfo, instanceUserInfo,
+            context, id, REQUEST_CONTACT, d, userInfo, instanceUserInfo,
             siteInfo, None, instanceDatum, supplementaryDatum, SUBSYSTEM)
 
     def __unicode__(self):
@@ -63,20 +68,22 @@ class RequestContactEvent(BasicAuditEvent):
 
 
 class Auditer(object):
-    def __init__(self, user):
-        self.user = user
-        self.userInfo = createObject('groupserver.LoggedInUser', user)
-        self.instanceUserInfo = IGSUserInfo(user)
-        self.siteInfo = createObject('groupserver.SiteInfo', user)
+    def __init__(self, userInfo, loggedInUserInfo, siteInfo):
+        # --=mpj17=-- This is not a bug: what the audit-trail considers the
+        # "user" is the person that is logged in. The "instance user" is the
+        # person that is being acted on.
+        self.userInfo = loggedInUserInfo
+        self.instanceUserInfo = userInfo
+        self.siteInfo = siteInfo
         self.queries = AuditQuery()
         self.factory = AuditEventFactory()
 
     def info(self, code, instanceDatum='', supplementaryDatum=''):
+        print('HERE')
         d = datetime.now(UTC)
         eventId = event_id_from_data(self.userInfo, self.instanceUserInfo, self.siteInfo, code,
                                      instanceDatum, supplementaryDatum)
-        e = self.factory(self.user, eventId, code, d, self.userInfo, self.instanceUserInfo,
+        e = self.factory(self.userInfo.user, eventId, code, d, self.userInfo, self.instanceUserInfo,
                          self.siteInfo, None, instanceDatum, supplementaryDatum, SUBSYSTEM)
         self.queries.store(e)
         log.info(e)
-
