@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
 from zope.formlib import form
 # from zope.security.interfaces import Unauthorized
@@ -20,7 +20,7 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from gs.core import to_unicode_or_bust
 from gs.profile.base import ProfileForm
 from gs.profile.email.base.emailuser import EmailUser
-from .audit import Auditer
+from .audit import (Auditer, REQUEST_CONTACT)
 from .interfaces import IRequestContact
 from .queries import RequestContactQuery
 
@@ -64,11 +64,12 @@ class RequestContact(ProfileForm):
             self.status = ('The request for contact has not been sent because you '
                            'have exceeded your daily limit of contact requests.')
         else:
-            self.auditer = Auditer(self.context)
+            self.auditer = Auditer(self.userInfo, self.loggedInUser, self.siteInfo)
             message = to_unicode_or_bust(data.get('message', ''))
+            self.auditer.info(REQUEST_CONTACT, message)
             self.request_contact(message)
-            s = 'The request for contact has been sent to {0}.'
-            self.staus = s.format(self.userInfo.name)
+            s = 'Your request has been sent to {0}.'
+            self.status = s.format(self.userInfo.name)
 
         assert self.status
 
