@@ -89,4 +89,3 @@ class RequestContact(ProfileForm):
         notifier = RequestNotifier(self.context, self.request)
         addr = self.loggedInEmailUser.preferred[0]
         notifier.notify(self.userInfo, self.loggedInUser, addr, userMessage)
-

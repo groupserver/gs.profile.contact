@@ -13,6 +13,7 @@
 #
 ##############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
+from textwrap import TextWrapper
 from gs.content.email.base import SiteEmail, TextMixin
 from gs.profile.base import ProfilePage
 
@@ -48,4 +49,3 @@ class RequestContactText(RequestContact, TextMixin):
         tw = TextWrapper()
         retval = tw.fill(m)
         return retval
-

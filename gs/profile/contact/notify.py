@@ -31,4 +31,3 @@ class RequestNotifier(NotifierABC):
         sender = MessageSender(self.context, userInfo)
         sender.send_message(subject, text, html)
         self.reset_content_type()
-

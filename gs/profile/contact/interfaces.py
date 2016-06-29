@@ -23,5 +23,4 @@ class IRequestContact(Interface):
         description='A message that will appear in the email to the person.'
                     ' It should be brief, as only 160 characters are allowed.',
         max_length=160,
-        required=True)
-
+        required=False)
