@@ -22,6 +22,7 @@ from gs.profile.base import ProfileForm
 from gs.profile.email.base.emailuser import EmailUser
 from .audit import (Auditer, REQUEST_CONTACT)
 from .interfaces import IRequestContact
+from .notify import RequestNotifier
 from .queries import RequestContactQuery
 
 
@@ -58,6 +59,11 @@ class RequestContact(ProfileForm):
         retval = EmailUser(self.context, self.loggedInUser)
         return retval
 
+    @Lazy
+    def emailUser(self):
+        retval = EmailUser(self.context, self.userInfo)
+        return retval
+
     @form.action(label='Request', name='request', failure='handle_set_action_failure')
     def handle_set(self, action, data):
         if self.requestCount > self.request24hrlimit:
@@ -80,5 +86,7 @@ class RequestContact(ProfileForm):
             self.status = '<p>There are errors:</p>'
 
     def request_contact(self, userMessage):
-        # TODO: This method.
-        pass
+        notifier = RequestNotifier(self.context, self.request)
+        addr = self.loggedInEmailUser.preferred[0]
+        notifier.notify(self.userInfo, self.loggedInUser, addr, userMessage)
+

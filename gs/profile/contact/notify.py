@@ -14,6 +14,7 @@
 ##############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
 from gs.content.email.base import NotifierABC
+from gs.profile.notify import MessageSender
 
 
 class RequestNotifier(NotifierABC):
