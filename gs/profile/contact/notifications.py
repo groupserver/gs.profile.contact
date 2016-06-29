@@ -14,10 +14,27 @@
 ##############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
 from gs.content.email.base import SiteEmail, TextMixin
+from gs.profile.base import ProfilePage
 
 
-class RequestContact(SiteEmail):
+class RequestContact(SiteEmail, ProfilePage):
     'Request contact with another member'
+
+    def get_support_email(self, userInfo, requestingUserInfo):
+        m = '''Hello,
+
+I recieved a Contact request from {request.name}
+    {siteInfo.url}{request.url}
+and...
+
+--
+About me:
+  {user.name}
+  {siteInfo.url}{user.url}'''
+        msg = m.format(user=userInfo, request=requestingUserInfo, siteInfo=self.siteInfo)
+        subject = 'Contact request'
+        retval = self.mailto(self.siteInfo.get_support_email(), subject, msg)
+        return retval
 
 
 class RequestContactText(RequestContact, TextMixin):

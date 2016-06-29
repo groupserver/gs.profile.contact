@@ -1,3 +1,59 @@
-<html
-  tal:define="userInfo options/userInfo | view/userInfo;
-              emailAddress options/emailAddress | string:placeholder@email.address;"></html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:tal="http://xml.zope.org/namespaces/tal"
+        xmlns:metal="http://xml.zope.org/namespaces/metal"
+        metal:use-macro="context/@@groupserver_email_layout/page">
+  <head>
+    <title metal:fill-slot="title">Contact request</title>
+  </head>
+  <body>
+    <div metal:fill-slot="preheader">
+    </div>
+    <div metal:fill-slot="body"
+         tal:define="userInfo options/userInfo | view/userInfo;
+                     requestingUserInfo options/requestingUserInfo | view/loggedInUserInfo;
+                     email options/email | string:person@example.com;
+                     message options/message | python:None">
+      <p>
+        Hello <span class="fn" tal:content="userInfo/name">A. person</span>,
+      </p>
+      <p>
+        <a href="#"
+           tal:content="requestingUserInfo/name">Another Person</a>,
+        a member of
+        <span tal:content="view/siteInfo/name">this site</span>,
+        wants to make contact.
+      </p>
+      <div tal:condition="message">
+        <p>They wrote the following message to you:</p>
+        <blockquote>
+          <p tal:content="message">
+            This is the message that the person wrote
+          </p>
+        </blockquote>
+      </div><!--message-->
+      <p>
+        <a tal:attributes="href string:mailto:${email};"
+           href="#"><b>Reply</b> to this email</a>
+        to make contact with
+        <span tal:content="requestingUserInfo/name">Person</span>.
+        This will expose your email address to
+        <span class="fn"
+              tal:content="requestingUserInfo/name">this person</span>.
+      </p>
+      <p>
+        <a tal:attributes="href python:view.get_support_email(userInfo, requestingUserInfo);"
+           href="#"><b>Contact</b> us at
+        <code tal:content="view/siteInfo/get_support_email">support@example.com</code></a>
+        if there is a problem, and we will do our
+        best to help.
+      </p>
+      <!--Website address-->
+      <p>
+        Kind regards<br/>
+        <span>The
+        <span tal:content="view/siteInfo/name">Site</span>
+        Team</span>
+      </p>
+    </div><!--body-->
+  </body>
+</html>

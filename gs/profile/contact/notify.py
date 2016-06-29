@@ -20,10 +20,12 @@ class RequestNotifier(NotifierABC):
     htmlTemplateName = 'gs-profile-contact.html'
     textTemplateName = 'gs-profile-contact.txt'
 
-    def notify(self, userInfo):
+    def notify(self, userInfo, requestingUserInfo, email, message):
         subject = 'Contact requested'
-        text = self.textTemplate()
-        html = self.htmlTemplate()
+        text = self.textTemplate(userInfo=userInfo, requestingUserInfo=requestingUserInfo,
+                                 email=email, message=message)
+        html = self.htmlTemplate(userInfo=userInfo, requestingUserInfo=requestingUserInfo,
+                                 email=email, message=message)
 
         sender = MessageSender(self.context, userInfo)
         sender.send_message(subject, text, html)
