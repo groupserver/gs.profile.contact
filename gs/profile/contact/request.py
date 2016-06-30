@@ -51,7 +51,7 @@ class RequestContact(ProfileForm):
             uri = u.format(self.userInfo.url)
             retval = self.request.RESPONSE.redirect(uri)
         else:
-            retval = self.queries.count_contactRequests(self.loggedInUser.id)
+            retval = self.queries.count_requests(self.loggedInUser.id)
         return retval
 
     @Lazy
