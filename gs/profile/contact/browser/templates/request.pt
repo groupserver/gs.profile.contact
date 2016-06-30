@@ -54,12 +54,11 @@
            tal:condition="python:(not view.loggedInUser.anonymous) and view.loggedInEmailUser.preferred and (requestcount &gt; request24hrlimit)">
         <h2>Request quota reached</h2>
         <p>
-          Unfortunately, you have
-          <b>reached your request quota for today.</b>
-          You may only send
+          You have reached your request-quota for today, as
+          you may only send
           <span tal:replace="request24hrlimit"/> requests per day
-          (in a 24 hour period).
-          Wait a day before making another request.
+          (24 hours).
+          <b>Wait a day</b> before making another contact request.
         </p>
       </div><!--gs-profile-contact-request-limit-->
       <div id="gs-profile-contact-request-other-email"
