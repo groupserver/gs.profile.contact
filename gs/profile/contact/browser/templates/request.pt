@@ -109,7 +109,7 @@
         <p>
           <span
             class="fn" tal:content="view/userInfo/name">a user</span>
-          can chose to respond to your request, or not.
+          can choose to respond to your request, or not.
         </p>
         <tal:block define="widgets view/widgets">
           <tal:block replace="structure provider:groupserver.FormWidgets"/>
