@@ -45,7 +45,7 @@ class RequestContactText(RequestContact, TextMixin):
         self.set_header('request-contact-txt')
 
     @staticmethod
-    def format_message(m):
-        tw = TextWrapper()
+    def format_message(m, indent=''):
+        tw = TextWrapper(width=70, initial_indent=indent, subsequent_indent=indent)
         retval = tw.fill(m)
         return retval
