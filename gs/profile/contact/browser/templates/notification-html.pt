@@ -36,9 +36,7 @@
            href="#"><b>Reply</b> to this email</a>
         to make contact with
         <span tal:content="requestingUserInfo/name">Person</span>.
-        This will expose your email address to
-        <span class="fn"
-              tal:content="requestingUserInfo/name">this person</span>.
+        This will expose your email address to them.
       </p>
       <p>
         <a tal:attributes="href python:view.get_support_email(userInfo, requestingUserInfo);"
