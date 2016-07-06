@@ -33,6 +33,11 @@ contacted then has a choice to respond, or to ignore the
 request. The contact details of the recipient are always kept
 confidential.
 
+The HTML and plain-text form of the notifications themselves are
+formatted by ``gs-profile-contact.html`` and
+``gs-profile-contact.txt`` respectively (in the context of a
+profile).
+
 Resources
 =========
 
