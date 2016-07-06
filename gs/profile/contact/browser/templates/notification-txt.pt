@@ -16,6 +16,12 @@
   define="m string:Reply to this email to make contact with ${requestingUserInfo/name}. This will expose your email address to them."
   content="python:view.format_message(m)"/>.
 
+* Profile of <tal:block content="requestingUserInfo/name" />
+  <tal:block content="string:${view/siteInfo/url}${requestingUserInfo/url}"/>
+
+* Their email address
+  <tal:blocl content="email" />
+
 If there is a problem contact us at
     <tal:block content="view/siteInfo/get_support_email">support@example.com</tal:block>
 We will do our best to help.

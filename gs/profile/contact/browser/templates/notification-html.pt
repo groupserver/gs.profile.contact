@@ -18,6 +18,7 @@
       </p>
       <p>
         <a href="#"
+           tal:attributes="href string:${view/siteInfo/url}${requestingUserInfo/url}"
            tal:content="requestingUserInfo/name">Another Person</a>,
         a member of
         <span tal:content="view/siteInfo/name">this site</span>,
