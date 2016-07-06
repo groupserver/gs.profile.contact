@@ -21,7 +21,7 @@
   <browser:page
     name="gs-profile-contact.txt"
     for="Products.CustomUserFolder.interfaces.ICustomUser"
-    class=".notifications.RequestContact"
+    class=".notifications.RequestContactText"
     template="browser/templates/notification-txt.pt"
     permission="zope2.View" />
 </configure>

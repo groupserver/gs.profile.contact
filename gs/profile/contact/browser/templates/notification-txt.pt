@@ -1,2 +1,25 @@
-<tal:block define="userInfo options/userInfo | view/userInfo;
-              emailAddress options/emailAddress | string:placeholder@email.address;"></tal:block>
+<tal:block
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="userInfo options/userInfo | view/userInfo;
+              requestingUserInfo options/requestingUserInfo | view/loggedInUserInfo;
+              email options/email | string:person@example.com;
+              message options/message | python:None">Hello <tal:block content="userInfo/name" />,
+
+<tal:block
+  define="m string:${requestingUserInfo/name}, a member of ${view/siteInfo/name}, wants to make contact."
+  content="python:view.format_message(m)" />
+
+<tal:block condition="message">They wrote the following message to you:
+<tal:block content="python:view.format_message(message, indent='    ')" />
+
+</tal:block><tal:block
+  define="m string:Reply to this email to make contact with ${requestingUserInfo/name}. This will expose your email address to them."
+  content="python:view.format_message(m)"/>.
+
+If there is a problem contact us at
+    <tal:block content="view/siteInfo/get_support_email">support@example.com</tal:block>
+We will do our best to help.
+
+Kind regards,
+  The <tal:block content="view/siteInfo/name"/> Team
+</tal:block>
