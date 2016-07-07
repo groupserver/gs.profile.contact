@@ -28,6 +28,19 @@ with codecs.open(os.path.join("docs", "HISTORY.rst"),
 
 requires = [
     'setuptools',
+    'zope.cachedescriptors',
+    'zope.component',
+    'zope.formlib',
+    'zope.interface',
+    'zope.schema',
+    'Zope2',
+    'gs.content.email.base',
+    'gs.core',
+    'gs.database',
+    'gs.profile.base',
+    'gs.profile.email.base',
+    'gs.profile.notify',
+    'Products.GSAuditTrail',
 ]
 
 setup(
