@@ -15,9 +15,11 @@
 from __future__ import absolute_import, unicode_literals
 from unittest import TestSuite, main as unittest_main
 from gs.profile.contact.tests.notifications import (TestRequestContact, TestRequestContactText)
+from gs.profile.contact.tests.notify import TestAlternateReplyMessageSender
 from gs.profile.contact.tests.request import TestRequestContact as TestRequestContactForm
 
-testCases = (TestRequestContact, TestRequestContactText, TestRequestContactForm, )
+testCases = (TestRequestContact, TestRequestContactText, TestRequestContactForm,
+             TestAlternateReplyMessageSender, )
 
 
 def load_tests(loader, tests, pattern):
