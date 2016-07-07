@@ -70,14 +70,15 @@ class RequestContact(ProfileForm):
             self.status = ('The request for contact has not been sent because you '
                            'have exceeded your daily limit of contact requests.')
         else:
-            self.auditer = Auditer(self.userInfo, self.loggedInUser, self.siteInfo)
             message = to_unicode_or_bust(data.get('message', ''))
-            self.auditer.info(REQUEST_CONTACT, message)
+            self.audit(message)
             self.request_contact(message)
             s = 'Your request has been sent to {0}.'
             self.status = s.format(self.userInfo.name)
 
-        assert self.status
+    def audit(self, message):
+        auditer = Auditer(self.userInfo, self.loggedInUser, self.siteInfo)
+        auditer.info(REQUEST_CONTACT, message)
 
     def handle_set_action_failure(self, action, data, errors):
         if len(errors) == 1:
