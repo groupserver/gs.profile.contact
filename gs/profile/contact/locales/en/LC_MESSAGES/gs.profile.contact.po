@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-07-08 21:31+0000\n"
+"PO-Revision-Date: 2016-07-08 14:34-0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#. Default: "<p>There is an error:</p>"
+#: ./request.py:88
+msgid "error"
+msgstr "<p>There is an error:</p>"
+
+#. Default: "<p>There are errors:</p>"
+#: ./request.py:90
+msgid "errors"
+msgstr "<p>There are errors:</p>"
+
+#. Default: "A message that will appear in the email to the person. It should be brief, as only 160 characters are allowed."
+#: ./interfaces.py:24
+msgid "message-field-description"
+msgstr "A message that will appear in the email to the person. It should be brief, as only 160 characters are allowed."
+
+#. Default: "Message"
+#: ./interfaces.py:23
+msgid "message-field-title"
+msgstr "Message"
+
+#. Default: "Site home page"
+#: ./browser/templates/request.pt:20
+msgid "page-breadcrumb-site-home"
+msgstr "Site home page"
+
+#. Default: "To request contact with ${userName} write a short message and click <samp class=\"button\">Request</samp>. Your message will be sent in an email along with <b>your</b> private information:"
+#: ./browser/templates/request.pt:95
+msgid "page-description"
+msgstr ""
+
+#. Default: "${userName} can choose to respond to your request, or not."
+#: ./browser/templates/request.pt:123
+msgid "page-description-conclusion"
+msgstr "${userName} can choose to respond to your request, or not."
+
+#. Default: "<b>Your</b> email address (${email}), and"
+#: ./browser/templates/request.pt:110
+msgid "page-description-email"
+msgstr "<b>Your</b> email address (${email})"
+
+#. Default: "<b>Your</b> name (${userName})"
+#: ./browser/templates/request.pt:105
+msgid "page-description-name"
+msgstr "<b>Your</b> name (${userName})"
+
+#. Default: "A link to <b>your</b> profile."
+#: ./browser/templates/request.pt:116
+msgid "page-description-profile"
+msgstr "A link to <b>your</b> profile."
+
+#. Default: "Unfortunately, <b>${userName} lacks a working address</b> and you can only request contact with people that have a working email address."
+#: ./browser/templates/request.pt:81
+msgid "page-other-verified-description"
+msgstr "Unfortunately, <b>${userName} lacks a working address</b> and you can only request contact with people that have a working email address."
+
+#. Default: "Verified email address"
+#: ./browser/templates/request.pt:76
+msgid "page-other-verified-title"
+msgstr ""
+
+#. Default: "You have reached your request-quota for today, as you may only send ${n} requests per day (24 hours). <b>Wait a day</b> before making another contact request."
+#: ./browser/templates/request.pt:68
+msgid "page-quota-description"
+msgstr "You have reached your request-quota for today, as you may only send ${n} requests per day (24 hours). <b>Wait a day</b> before making another contact request."
+
+#. Default: "Request quota reached"
+#: ./browser/templates/request.pt:62
+msgid "page-quota-title"
+msgstr "Request limit reached"
+
+#. Default: "Request contact: ${userName}: ${siteName}"
+#: ./browser/templates/request.pt:12
+msgid "page-title"
+msgstr "Request contact: ${userName}: ${siteName}"
+
+#. Default: "You cannot request contact with ${userName} because you lack a <b>verified</b> email address."
+#: ./browser/templates/request.pt:51
+msgid "page-verified-description"
+msgstr "You cannot request contact with ${userName} because you lack a <b>verified</b> email address."
+
+#. Default: "Visit your <b>email settings</b> page to verify that you control an address."
+#: ./browser/templates/request.pt:55
+msgid "page-verified-solution"
+msgstr "Visit your <b>email settings</b> page to verify that you control an address."
+
+#. Default: "Verified email address"
+#: ./browser/templates/request.pt:45
+msgid "page-verified-title"
+msgstr "Verify email address"
+
+#. Default: "Request"
+#: ./request.py:68
+msgid "request-button"
+msgstr "Request"
+
+#. Default: "Request contact"
+#: ./browser/templates/request.pt:30
+#: ./request.py:31
+msgid "request-contact-title"
+msgstr "Request contact"
+
+#. Default: "The request for contact has not been sent because you have exceeded your daily limit of contact requests."
+#: ./request.py:72
+msgid "request-quota-hit"
+msgstr "The request for contact has not been sent because you have exceeded your daily limit of contact requests."
+
+#. Default: "Your request has been sent to ${name}."
+#: ./request.py:79
+msgid "request-success"
+msgstr "Your request has been sent to ${name}."
+

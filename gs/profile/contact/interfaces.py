@@ -15,12 +15,14 @@
 from __future__ import absolute_import, unicode_literals, print_function
 from zope.interface.interface import Interface
 from zope.schema import TextLine
+from . import GSMessageFactory as _
 
 
 class IRequestContact(Interface):
     message = TextLine(
-        title='Message',
-        description='A message that will appear in the email to the person.'
-                    ' It should be brief, as only 160 characters are allowed.',
+        title=_('message-field-title', 'Message'),
+        description=_('message-field-description',
+                      'A message that will appear in the email to the person. It should be brief, '
+                      'as only 160 characters are allowed.'),
         max_length=160,
         required=False)

@@ -20,6 +20,7 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from gs.core import to_unicode_or_bust
 from gs.profile.base import ProfileForm
 from gs.profile.email.base.emailuser import EmailUser
+from . import GSMessageFactory as _
 from .audit import (Auditer, REQUEST_CONTACT)
 from .interfaces import IRequestContact
 from .notify import RequestNotifier
@@ -27,7 +28,7 @@ from .queries import RequestContactQuery
 
 
 class RequestContact(ProfileForm):
-    label = 'Request contact'
+    label = _('request-contact-title', 'Request contact')
     pageTemplateFileName = 'browser/templates/request.pt'
     template = ZopeTwoPageTemplateFile(pageTemplateFileName)
     form_fields = form.Fields(IRequestContact, render_context=False)
@@ -64,17 +65,19 @@ class RequestContact(ProfileForm):
         retval = EmailUser(self.context, self.userInfo)
         return retval
 
-    @form.action(label='Request', name='request', failure='handle_set_action_failure')
+    @form.action(label=_('request-button', 'Request'), name='request',
+                 failure='handle_set_action_failure')
     def handle_set(self, action, data):
         if self.requestCount > self.request24hrlimit:
-            self.status = ('The request for contact has not been sent because you '
-                           'have exceeded your daily limit of contact requests.')
+            self.status = _('request-quota-hit',
+                            'The request for contact has not been sent because you '
+                            'have exceeded your daily limit of contact requests.')
         else:
             message = to_unicode_or_bust(data.get('message', ''))
             self.audit(message)
             self.request_contact(message)
-            s = 'Your request has been sent to {0}.'
-            self.status = s.format(self.userInfo.name)
+            self.status = _('request-success', 'Your request has been sent to ${name}.',
+                            mapping={'name': self.userInfo.name})
 
     def audit(self, message):
         auditer = Auditer(self.userInfo, self.loggedInUser, self.siteInfo)
@@ -82,9 +85,9 @@ class RequestContact(ProfileForm):
 
     def handle_set_action_failure(self, action, data, errors):
         if len(errors) == 1:
-            self.status = '<p>There is an error:</p>'
+            self.status = _('error', '<p>There is an error:</p>')
         else:
-            self.status = '<p>There are errors:</p>'
+            self.status = _('errors', '<p>There are errors:</p>')
 
     def request_contact(self, userMessage):
         notifier = RequestNotifier(self.context, self.request)
