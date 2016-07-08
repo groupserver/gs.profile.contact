@@ -29,6 +29,8 @@ class TestAlternateReplyMessageSender(TestCase):
         container = {}
         ms.set_headers(container, 'Test', 'other@example.com', 'mocked')
 
+        m_to.assert_called_once_with('mocked')
+        m_from.assert_called_once_with(None)  # Did we generate the Support address?
         self.assertEqual(m_to(), container['To'])
         self.assertEqual('other@example.com', container['Reply-to'])
         self.assertEqual(m_from(), container['From'])
