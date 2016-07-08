@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[gs-profile-contact.gs-profile-contact-pot]
+file_filter = gs/profile/contact/locales/<lang>/LC_MESSAGES/gs.profile.contact.po
+source_file = gs/profile/contact/locales/en/LC_MESSAGES/gs.profile.contact.po
+source_lang = en
+type = PO
+

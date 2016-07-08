@@ -1,18 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2016-07-08 21:31+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-07-08 14:47-0700\n"
+"Language-Team: German (https://www.transifex.com/groupserver/teams/29763/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Domain: DOMAIN\n"
+"Language: de\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #. Default: "<p>There is an error:</p>"
 #: ./request.py:88
@@ -24,7 +25,8 @@ msgstr ""
 msgid "errors"
 msgstr ""
 
-#. Default: "A message that will appear in the email to the person. It should be brief, as only 160 characters are allowed."
+#. Default: "A message that will appear in the email to the person. It should
+#. be brief, as only 160 characters are allowed."
 #: ./interfaces.py:24
 msgid "message-field-description"
 msgstr ""
@@ -39,7 +41,9 @@ msgstr ""
 msgid "page-breadcrumb-site-home"
 msgstr ""
 
-#. Default: "To request contact with ${userName} write a short message and click <samp class=\"button\">Request</samp>. Your message will be sent in an email along with <b>your</b> private information:"
+#. Default: "To request contact with ${userName} write a short message and
+#. click <samp class=\"button\">Request</samp>. Your message will be sent in
+#. an email along with <b>your</b> private information:"
 #: ./browser/templates/request.pt:95
 msgid "page-description"
 msgstr ""
@@ -64,7 +68,8 @@ msgstr ""
 msgid "page-description-profile"
 msgstr ""
 
-#. Default: "Unfortunately, <b>${userName} lacks a working address</b> and you can only request contact with people that have a working email address."
+#. Default: "Unfortunately, <b>${userName} lacks a working address</b> and you
+#. can only request contact with people that have a working email address."
 #: ./browser/templates/request.pt:81
 msgid "page-other-verified-description"
 msgstr ""
@@ -74,7 +79,9 @@ msgstr ""
 msgid "page-other-verified-title"
 msgstr ""
 
-#. Default: "You have reached your request-quota for today, as you may only send ${n} requests per day (24 hours). <b>Wait a day</b> before making another contact request."
+#. Default: "You have reached your request-quota for today, as you may only
+#. send ${n} requests per day (24 hours). <b>Wait a day</b> before making
+#. another contact request."
 #: ./browser/templates/request.pt:68
 msgid "page-quota-description"
 msgstr ""
@@ -89,12 +96,14 @@ msgstr ""
 msgid "page-title"
 msgstr ""
 
-#. Default: "You cannot request contact with ${userName} because you lack a <b>verified</b> email address."
+#. Default: "You cannot request contact with ${userName} because you lack a
+#. <b>verified</b> email address."
 #: ./browser/templates/request.pt:51
 msgid "page-verified-description"
 msgstr ""
 
-#. Default: "Visit your <b>email settings</b> page to verify that you control an address."
+#. Default: "Visit your <b>email settings</b> page to verify that you control
+#. an address."
 #: ./browser/templates/request.pt:55
 msgid "page-verified-solution"
 msgstr ""
@@ -110,12 +119,12 @@ msgid "request-button"
 msgstr ""
 
 #. Default: "Request contact"
-#: ./browser/templates/request.pt:30
-#: ./request.py:31
+#: ./browser/templates/request.pt:30 ./request.py:31
 msgid "request-contact-title"
 msgstr ""
 
-#. Default: "The request for contact has not been sent because you have exceeded your daily limit of contact requests."
+#. Default: "The request for contact has not been sent because you have
+#. exceeded your daily limit of contact requests."
 #: ./request.py:72
 msgid "request-quota-hit"
 msgstr ""
@@ -124,4 +133,3 @@ msgstr ""
 #: ./request.py:79
 msgid "request-success"
 msgstr ""
-
