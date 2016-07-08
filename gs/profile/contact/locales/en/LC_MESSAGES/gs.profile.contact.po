@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2016-07-08 21:31+0000\n"
-"PO-Revision-Date: 2016-07-08 14:34-0700\n"
+"PO-Revision-Date: 2016-07-08 14:47-0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Site home page"
 #. Default: "To request contact with ${userName} write a short message and click <samp class=\"button\">Request</samp>. Your message will be sent in an email along with <b>your</b> private information:"
 #: ./browser/templates/request.pt:95
 msgid "page-description"
-msgstr ""
+msgstr "To request contact with ${userName} write a short message and click <samp class=\"button\">Request</samp>. Your message will be sent in an email along with <b>your</b> private information:"
 
 #. Default: "${userName} can choose to respond to your request, or not."
 #: ./browser/templates/request.pt:123
@@ -72,7 +72,7 @@ msgstr "Unfortunately, <b>${userName} lacks a working address</b> and you can on
 #. Default: "Verified email address"
 #: ./browser/templates/request.pt:76
 msgid "page-other-verified-title"
-msgstr ""
+msgstr "Verified email address"
 
 #. Default: "You have reached your request-quota for today, as you may only send ${n} requests per day (24 hours). <b>Wait a day</b> before making another contact request."
 #: ./browser/templates/request.pt:68
