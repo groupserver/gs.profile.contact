@@ -16,17 +16,15 @@ from __future__ import absolute_import, unicode_literals, print_function
 from datetime import datetime
 from logging import getLogger
 from pytz import UTC
-from zope.component.interfaces import IFactory
 from zope.interface import implementer, implementedBy
 from Products.GSAuditTrail import (IAuditEvent, BasicAuditEvent, AuditQuery, event_id_from_data)
 
-SUBSYSTEM = 'groupserver.ProfileAudit'
+SUBSYSTEM = 'gs.profile.contact'
 UNKNOWN = 0
 REQUEST_CONTACT = '5'
 log = getLogger(SUBSYSTEM)
 
 
-@implementer(IFactory)
 class AuditEventFactory(object):
     title = 'Request contact audit-event factory'
     description = 'Creates a GroupServer audit event for profiles'
@@ -79,7 +77,6 @@ class Auditer(object):
         self.factory = AuditEventFactory()
 
     def info(self, code, instanceDatum='', supplementaryDatum=''):
-        print('HERE')
         d = datetime.now(UTC)
         eventId = event_id_from_data(self.userInfo, self.instanceUserInfo, self.siteInfo, code,
                                      instanceDatum, supplementaryDatum)

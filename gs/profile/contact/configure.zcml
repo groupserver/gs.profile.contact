@@ -24,4 +24,12 @@
     class=".notifications.RequestContactText"
     template="browser/templates/notification-txt.pt"
     permission="zope2.View" />
+
+  <!--The audit-trail utility-->
+  <utility
+    name="gs.profile.contact"
+    factory=".audit.AuditEventFactory"
+    provides="zope.component.interfaces.IFactory"
+    permission="zope.Public" />
+
 </configure>
