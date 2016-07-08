@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0 (2016-07-05)
+1.0.0 (2016-07-08)
 ------------------
 
 Initial version. Prior to the creation of this product the
