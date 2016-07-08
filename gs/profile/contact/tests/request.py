@@ -29,7 +29,7 @@ class TestRequestContact(TestCase):
         # decorator works
         rc.handle_set.success_handler(rc, MagicMock(), MagicMock())
 
-        self.assertIn('has not been sent', rc.status)
+        self.assertEqual('request-quota-hit', rc.status)
 
     @patch.object(RequestContact, 'requestCount', new_callable=PropertyMock)
     @patch.object(RequestContact, 'userInfo', new_callable=PropertyMock)
@@ -44,4 +44,4 @@ class TestRequestContact(TestCase):
 
         m_request_contact.assert_called_once_with(m)
         m_audit.assert_called_once_with(m)
-        self.assertIn('has been sent', rc.status)
+        self.assertEqual('request-success', rc.status)
