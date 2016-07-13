@@ -1,9 +1,11 @@
-# 
+# Translators:
+# Michael JasonSmith <mpj17@ldots.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2016-07-08 21:31+0000\n"
 "PO-Revision-Date: 2016-07-08 14:47-0700\n"
+"Last-Translator: Michael JasonSmith <mpj17@ldots.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/groupserver/teams/29763/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -18,12 +20,12 @@ msgstr ""
 #. Default: "<p>There is an error:</p>"
 #: ./request.py:88
 msgid "error"
-msgstr ""
+msgstr "<p>Il y a une erreur :</p>"
 
 #. Default: "<p>There are errors:</p>"
 #: ./request.py:90
 msgid "errors"
-msgstr ""
+msgstr "<p>Il y a des erreurs :</p>"
 
 #. Default: "A message that will appear in the email to the person. It should
 #. be brief, as only 160 characters are allowed."
@@ -34,12 +36,12 @@ msgstr ""
 #. Default: "Message"
 #: ./interfaces.py:23
 msgid "message-field-title"
-msgstr ""
+msgstr "Message"
 
 #. Default: "Site home page"
 #: ./browser/templates/request.pt:20
 msgid "page-breadcrumb-site-home"
-msgstr ""
+msgstr "La page d'accueil du site"
 
 #. Default: "To request contact with ${userName} write a short message and
 #. click <samp class=\"button\">Request</samp>. Your message will be sent in
@@ -56,12 +58,12 @@ msgstr ""
 #. Default: "<b>Your</b> email address (${email}), and"
 #: ./browser/templates/request.pt:110
 msgid "page-description-email"
-msgstr ""
+msgstr "Votre adresse e-mail (${email})."
 
 #. Default: "<b>Your</b> name (${userName})"
 #: ./browser/templates/request.pt:105
 msgid "page-description-name"
-msgstr ""
+msgstr "Votre nom (${userName})"
 
 #. Default: "A link to <b>your</b> profile."
 #: ./browser/templates/request.pt:116
@@ -111,7 +113,7 @@ msgstr ""
 #. Default: "Verified email address"
 #: ./browser/templates/request.pt:45
 msgid "page-verified-title"
-msgstr ""
+msgstr "Vérifier l'adresse e-mail"
 
 #. Default: "Request"
 #: ./request.py:68
