@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.1 (2016-07-12)
+------------------
+
+* [DE] Updating the German localisation, thanks to Alice Rose
+* [FR] Updating the French localisation
+
 1.0.0 (2016-07-08)
 ------------------
 
